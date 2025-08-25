@@ -1,7 +1,7 @@
 import React from "react";
 import Marks from "../components/Marks";
 
-const Result = ({ score, level, breakdown, topic, duration, onCancel }) => {
+const Result = ({ score, level, breakdown, topic, duration, onCancel,showRoadmap }) => {
   return (
     <div className="flex min-h-screen justify-center items-center bg-gray-100 px-2 py-6">
       <div
@@ -54,7 +54,7 @@ const Result = ({ score, level, breakdown, topic, duration, onCancel }) => {
             </div>
           </div>
           <div className="mt-1 text-gray-700 text-xs md:text-sm">
-            Total correct: {breakdown.correct} / 20
+            Total correct: {breakdown.correct} / 10
           </div>
         </div>
 
@@ -69,7 +69,7 @@ const Result = ({ score, level, breakdown, topic, duration, onCancel }) => {
           Duration: {duration} days
         </div>
         
-        <button className="bg-green-600 mx-[25%] cursor-pointer text-white px-4 py-2 md:px-6 md:py-3 rounded-xl shadow hover:bg-green-700 transition text-base md:text-lg font-semibold  md:w-auto mt-2">
+        <button  onClick={showRoadmap} className="bg-green-600 mx-[25%] cursor-pointer text-white px-4 py-2 md:px-6 md:py-3 rounded-xl shadow hover:bg-green-700 transition text-base md:text-lg font-semibold  md:w-auto mt-2">
           Explore your roadmap
         </button>
 

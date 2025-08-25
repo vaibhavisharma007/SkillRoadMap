@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
-const Loader = () => {
+const Loader = ({message}) => {
     const [progress,setProgress]=useState(0);
 
     useEffect(()=>{
@@ -15,7 +15,7 @@ const Loader = () => {
     },[]);
   return (
     <div className='flex flex-col justify-center items-center h-screen text-center' >
-        <h2 className='text-2xl font-bold mb-4' >Preparing your Assessment...</h2>
+        <h2 className='text-2xl font-bold mb-4' >{message}</h2>
         <div className='w-64  h-4 rounded-full  bg-gray-200'>
             <div className='bg-blue-500 h-4 rounded-full transition-all duration-300' style={{width:`${progress}%`}}/>
         </div>

@@ -2,6 +2,7 @@ import React from "react";
 import TopicCard from "../components/TopicCard";
 import DurationSlider from "../components/DurationSlider";
 import { useState } from "react";
+import {motion} from "framer-motion"
 const TOPICS = [
   {
     key: "JavaScript",
@@ -54,6 +55,7 @@ const TOPICS = [
 const Home = ({ onBegin }) => {
   const [selected, onSelect] = useState(null); //it contains topic
   const [duration, setDuration] = useState(7);
+  const [topic,setTopic]=useState("");
   return (
     
     <div className="container mx-auto px-6 py-12 ">
@@ -67,6 +69,15 @@ const Home = ({ onBegin }) => {
       </div>
 
       {/* topics */}
+      <div className="text-center p-4" >
+        <input type="text"   className="p-4 border-4 rounded" placeholder="Enter topic here" onChange={(e)=>{setTopic(e.target.value)}} />
+        <motion.button whileHover={{scale:1.1}} whileTap={{scale:0.9}} className=" border-2 ml-4 px-4 rounded-2xl bg-gray-400 cursor-pointer " onClick={()=>{onSelect(topic)}} >select</motion.button>
+        {selected && (
+          <div className="p-4 border-2 mx-auto max-w-[20%] my-4 rounded-2xl bg-green-300 font-lg">
+            {selected}
+          </div>
+        )}
+      </div>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {TOPICS.map((topic) => (
           <TopicCard

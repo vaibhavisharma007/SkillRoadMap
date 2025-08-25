@@ -1,6 +1,6 @@
 import React from "react";
 
-const Marks = ({ correct, total = 20 }) => {
+const Marks = ({ correct, total=10 }) => {
   const percentage = (correct / total) * 100;
   const radius = 50;
   const circumference = 2 * Math.PI * radius;

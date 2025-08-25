@@ -38,7 +38,7 @@ const QuestionCard = ({
   }
   
   return (
-    <div className="md:max-w-[40%] max-w-[60%] mx-auto flex flex-col border-2 rounded-lg ">
+    <div className="md:w-[40%] w-[60%] my-[5%] mx-auto flex flex-col border-2 rounded-lg ">
       <div className="mx-auto">
         {questions[id]?.id} of {questions.length}
       </div>
@@ -56,11 +56,11 @@ const QuestionCard = ({
           {questions[id]?.difficulty}
         </div>
       </div>
-      <div className="flex flex-col justify-start   px-5 ">
+      <div className="flex flex-col justify-start  px-5 ">
         {questions[id]?.options?.map((opt, index) => {
           const isSelected=selectedOption === index;
           const isCorrect=questions[id]?.correct === index;
-          let optionStyle=" cursor-pointer border-2  m-4 text-lg p-4 min-w-[75%] rounded-lg text-wrap";
+          let optionStyle=" cursor-pointer border-2  m-4 text-md p-4 min-w-[75%] rounded-lg text-wrap";
           if(isSelected){
             optionStyle+=isCorrect?" border-green-400 bg-green-100":" border-red-400 bg-red-100";
 
@@ -72,7 +72,7 @@ const QuestionCard = ({
           <div className="flex items-center" key={index} >
             <div
               onClick={() => {
-                setSelectedOption(index);
+                handleOptionClick(index);
               }}
             >
               {selectedOption === index ? (

@@ -10,7 +10,7 @@ export async function getAssessmentQuestions(req,res){
     const {topic}=req.body || {};
     if(!topic) return res.status(400).json({error:"topic is required"});
     const schemaHint =`
-    Array of 20 items :
+    Array of 10 items :
     {
     "id": number,
     "question": string,
@@ -19,8 +19,9 @@ export async function getAssessmentQuestions(req,res){
     "difficulty": "Easy"|"Medium"|"Hard"
     "explanation": string
     }`;
-    const prompt=`Generate 20 multiple choice questions to assess ${topic}.
-    Balance :~8 beginner, ~7 intermediate, ~5 advanced.
+    
+    const prompt=`Generate 10 multiple choice questions to assess ${topic}.
+   Balance :~4 beginner, ~4 intermediate, ~2 advanced.
     Make questions specific and non-trivial.
     Include the correct option index in "correct".
     Respond ONLY with valid JSON. No extra text, no comments.
@@ -30,7 +31,7 @@ export async function getAssessmentQuestions(req,res){
     try{
         const raw = await generateText(prompt); // get raw text from Gemini
         const data = tryParseJSON(raw); // parse using parser utility
-        if(!Array.isArray(data) || data.length !== 20){
+        if(data.length !== 10){
             return res.status(500).json({error:"Invalid response format"});
         }
         return res.status(200).json(data);
@@ -75,8 +76,8 @@ export async function evaluateAssessment(req,res){
 
     let level="Beginner";
 
-    if(score>75 && HardCorrect>=3 && MediumCorrect>=5) level="Advanced";
-    else if(score>50 && MediumCorrect>=3 && EasyCorrect>=5) level="Intermediate";
+    if(score>75 && HardCorrect>=2 && MediumCorrect>=3) level="Advanced";
+    else if(score>50 && MediumCorrect>=3 && EasyCorrect>=3) level="Intermediate";
 
     return res.json({
         score,

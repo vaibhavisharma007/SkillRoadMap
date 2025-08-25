@@ -35,7 +35,7 @@ const Assesment = ({ topic, duration, handleAssessmentFinish,onCancel}) => {
   };
 
   return (
-    <>
+    <div className="h-screen ">
       <div className="flex justify-between items-center  border-4 mx-[10%] my-4 rounded-lg " >
         <div className="flex flex-col  ml-[40%] text-center">
           <div className="font-bold text-2xl " >Assesment Quiz</div>
@@ -45,7 +45,7 @@ const Assesment = ({ topic, duration, handleAssessmentFinish,onCancel}) => {
         <button className="border-2 p-3 mr-4 rounded-2xl cursor-pointer text-red-700 hover:bg-red-500 hover:text-white" onClick={onCancel}>Cancel</button>
       </div>
 
-      {loading && <Loader />}
+      {loading && <Loader message={"Preparing Your Assessment..."} />}
       {!loading && Questions.length > 0 && (
         <QuestionCard
           questions={Questions}
@@ -56,7 +56,7 @@ const Assesment = ({ topic, duration, handleAssessmentFinish,onCancel}) => {
           setAnswers={setAnswers}
         />
       )}
-    </>
+    </div>
   );
 };
 

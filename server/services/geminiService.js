@@ -8,7 +8,7 @@ const genAI = new GoogleGenerativeAI(process.env.API_KEY);
 // Function to generate normal text
 export async function generateText(prompt) {
   try {
-    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" }); 
+    const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" }); 
     const result = await model.generateContent(prompt);
 
     return result.response.text();
